@@ -1,50 +1,54 @@
 <html>
 <head>
-<title>Vertx Illustrations</title>
-<script>
-	function compute() {
-		var p = document.getElementById("p").value;
-		var t = document.getElementById("t").value;
-		var r = document.getElementById("r").value;
-		var json = {
-			"p" : parseInt(p),
-			"t" : parseInt(t),
-			"r" : parseInt(r)
-		};
-		var xhr = new XMLHttpRequest();
-		xhr.open("post", "/bank/compute", true);
-		xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.onreadhstatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				console.log(xhr);
-			}
-		};
-		xhr.send(JSON.stringify(json));
-		return false;
-	}
-</script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<h1>Vertx Illustrations</h1>
-	<hr />
-	<h2>Request and JSON Handling</h2>
-		<table>
-			<tr>
-				<td>Amount</td>
-				<td><input id="p" /></td>
-			</tr>
-			<tr>
-				<td>Years</td>
-				<td><input id="t" /></td>
-			</tr>
-			<tr>
-				<td>Rate</td>
-				<td><input id="r" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><button onclick="return compute()">Compute
-						Simple Interest'</button></td>
-			</tr>
-		</table>
+
+<h1>Web site with public and private pages</h1>
+
+<br>
+<br>
+
+<div id="login">
+    <a href="#" id="generateToken">Get a Token</a>
+    <div id="token">Current token:</div>
+</div>
+
+<br>
+<br>
+
+<div id="test">
+    <a href="#" id="getProtected">Get Protected Resource</a>
+    <div id="protected"></div>
+</div>
+
+<script language="JavaScript">
+    $(document).ready(function () {
+        $('#generateToken').on('click', function () {
+            $.ajax({
+                url: '/api/newToken',
+                dataType: 'text',
+                success: function (text) {
+                    $('#token').html('Current Token: ' + text);
+                }
+            });
+        });
+        $('#getProtected').on('click', function () {
+            $.ajax({
+                url: '/api/protected',
+                dataType: 'text',
+                headers: {
+                    "Authorization": "Bearer " + $('#token').html().substring(15)
+                },
+                success: function (text) {
+                    $('#protected').html(text);
+                },
+                error: function (err) {
+                    $('#protected').html('Error: ' + err.toString());
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
