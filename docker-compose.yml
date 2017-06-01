@@ -1,23 +1,11 @@
-version: '3'
-services:
-  jenkins:
-    image: bgollako/stackoverflow:latest
-    ports:
-      - "8080:8080"
-      - "50010:50000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    container_name: stackoverflow
 
-  artifactory:
-    image: docker.bintray.io/jfrog/artifactory-oss
-    ports:
-      - "8081:8081"
-    container_name: artifactory
-
-  sonarqube:
-    image: sonarqube
-    ports:
-      - "9000:9000"
-      - "9092:9092"
-    container_name: sonarqube
+verflow:
+  image: bgollako/stackoverflow:latest
+  links:
+    - mongo:mongodbhost
+  ports:
+    - 8080:8080  
+mongo:
+  image: mongo:latest   
+  ports:
+    - 27017:27017
