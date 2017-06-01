@@ -1,13 +1,13 @@
 version: '3'
 services:
   jenkins:
-    image: schoolofdevops/jenkins:2.19.4-debian
+    image: bgollako/stackoverflow:latest
     ports:
       - "8080:8080"
-      - "50000:50000"
+      - "50010:50000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    container_name: jenkins
+    container_name: stackoverflow
 
   artifactory:
     image: docker.bintray.io/jfrog/artifactory-oss
