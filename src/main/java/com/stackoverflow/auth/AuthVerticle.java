@@ -23,7 +23,7 @@ public class AuthVerticle extends AbstractVerticle {
 									.put("path", "keystore.jceks")
 									.put("password", "secret")));
 					message.reply(new JsonObject().put("status_code", 200).put("data", jwt.generateToken(new JsonObject().put("username", message.body()), 
-							new JWTOptions().setExpiresInSeconds(60L))));
+							new JWTOptions().setExpiresInSeconds(3600000))));
 				}else if(res.failed()){
 					message.fail(403, "No users found");
 				}
