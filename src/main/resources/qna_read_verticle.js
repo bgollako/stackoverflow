@@ -1,7 +1,7 @@
 var MongoClient = require("vertx-mongo-js/mongo_client");
 
 vertx.eventBus().consumer("questions.read",function(message){
-    var client = MongoClient.createShared(vertx, {"db_name":"stackoverflow","connection_string":"mongodb://mongodbhost:27017"});
+    var client = MongoClient.createShared(vertx, {"db_name":"stackoverflow","connection_string":"mongodb://104.197.213.109:27017"});
     if(message.body() == null){
         client.find("question",{},function(res, res_err){
             if(res_err == null){
@@ -25,7 +25,7 @@ vertx.eventBus().consumer("questions.read",function(message){
 });
 
 vertx.eventBus().consumer("questions.search",function(message){
-    var client = MongoClient.createShared(vertx, {"db_name":"stackoverflow","connection_string":"mongodb://mongodbhost:27017"});
+    var client = MongoClient.createShared(vertx, {"db_name":"stackoverflow","connection_string":"mongodb://104.197.213.109:27017"});
     client.find("question",{"title":{"$regex":message.body().title}},function(res, res_err){
             if(res_err == null){
                 message.reply({"status_code":200,"data":res});
@@ -37,7 +37,7 @@ vertx.eventBus().consumer("questions.search",function(message){
 });
 
 vertx.eventBus().consumer("questions.read.answer",function(message){
-    var client = MongoClient.createShared(vertx, {"db_name":"stackoverflow","connection_string":"mongodb://mongodbhost:27017"});
+    var client = MongoClient.createShared(vertx, {"db_name":"stackoverflow","connection_string":"mongodb://104.197.213.109:27017"});
     if(message.body() == null){
         client.findWithOptions("question",{},{"fields":{"answers":true}},function(res, res_err){
             if(res_err == null){
