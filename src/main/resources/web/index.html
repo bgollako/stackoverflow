@@ -1,54 +1,99 @@
 <html>
-<head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-</head>
-<body>
-
-<h1>Web site with public and private pages</h1>
-
-<br>
-<br>
-
-<div id="login">
-    <a href="#" id="generateToken">Get a Token</a>
-    <div id="token">Current token:</div>
-</div>
-
-<br>
-<br>
-
-<div id="test">
-    <a href="#" id="getProtected">Get Protected Resource</a>
-    <div id="protected"></div>
-</div>
-
-<script language="JavaScript">
-    $(document).ready(function () {
-        $('#generateToken').on('click', function () {
-            $.ajax({
-                url: '/api/newToken',
-                dataType: 'text',
-                success: function (text) {
-                    $('#token').html('Current Token: ' + text);
-                }
+    <head>
+        <title>Packet Overflow</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            .navbar{
+                border-radius: 0%
+            };
+        </style>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover({animation:true, html:true}); 
             });
-        });
-        $('#getProtected').on('click', function () {
-            $.ajax({
-                url: '/api/protected',
-                dataType: 'text',
-                headers: {
-                    "Authorization": "Bearer " + $('#token').html().substring(15)
-                },
-                success: function (text) {
-                    $('#protected').html(text);
-                },
-                error: function (err) {
-                    $('#protected').html('Error: ' + err.toString());
-                }
-            });
-        });
-    });
-</script>
-</body>
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Packet<strong><b>Overflow</b></strong></a>
+                </div>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" size="70" placeholder="Search">
+                    </div>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#signup-modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <!--<div class="panel panel-primary">
+                <div class="panel-heading">Questions</div>
+                <div class="panel-body"></div>
+            </div>-->
+            <div id="login-modal" class="modal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><center>Login</center></h4>
+                        </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="text" class="form-control" id="email" placeholder="Email">
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                <input type="password" class="form-control" id="password" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id="signup-modal" class="modal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><center>Sign up</center></h4>
+                        </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="text" class="form-control" id="init_email" placeholder="Email">
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+                                <input type="password" class="form-control" id="init_password" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Sign up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
