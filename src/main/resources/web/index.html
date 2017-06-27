@@ -8,8 +8,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
             .navbar{
-                border-radius: 0%
-            };
+                border-radius: 0%;
+            }
+
         </style>
         <script>
             $(document).ready(function(){
@@ -18,14 +19,17 @@
         </script>
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Packet<strong><b>Overflow</b></strong></a>
+                    <a class="navbar-brand" href="#">PacketOverflow</a>
                 </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#" data-toggle="modal" data-target="#post-question-modal"><span class="glyphicon glyphicon-question-sign"></span> Post Question</a></li>
+                </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" class="form-control" size="70" placeholder="Search">
+                        <input type="text" class="form-control" size="50" placeholder="Search">
                     </div>
                     <button type="button" class="btn btn-primary">Submit</button>
                 </form>
@@ -40,12 +44,37 @@
                 <div class="panel-heading">Questions</div>
                 <div class="panel-body"></div>
             </div>-->
-            <div id="login-modal" class="modal" role="dialog">
+            <div id="post-question-modal" class="modal" data-keyboard="true" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title"><center>Login</center></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Post Question</h4>
+                        </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" id="comment" placeholder="Question"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Post Question</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!--<div class="panel panel-primary">
+                <div class="panel-heading">Questions</div>
+                <div class="panel-body"></div>
+            </div>-->
+            <div id="login-modal" class="modal" data-keyboard="true" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Login</h4>
                         </div>
                     <div class="modal-body">
                         <form role="form">
@@ -57,19 +86,20 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
                                 <input type="password" class="form-control" id="password" placeholder="Password">
                             </div>
-                            <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                            <button type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div id="signup-modal" class="modal" role="dialog">
+            <div id="signup-modal" class="modal" data-keyboard="true" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title"><center>Sign up</center></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Sign up</h4>
                         </div>
                     <div class="modal-body">
                         <form role="form">
@@ -89,7 +119,7 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
                                 <input type="password" class="form-control" id="init_password" placeholder="Password">
                             </div>
-                            <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Sign up</button>
+                            <button type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Sign up</button>
                         </form>
                     </div>
                 </div>
